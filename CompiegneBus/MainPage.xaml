@@ -1,0 +1,208 @@
+﻿<Page
+    x:Class="CompiegneBus.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompiegneBus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Pivot Title="Compiègne Bus" x:Name="mainPivot">
+        <PivotItem Header="附近" x:Name="NearbyPivotItem">
+            <StackPanel>
+                <Maps:MapControl x:Name="map" ZoomLevel="12" Height="500"
+                    MapServiceToken="7fOwlZy2ETLvuutjmYzd~rSfMsiBGFRheGaRl1uA4_A~AkcOenH2EysfdxDtHWdaEFoSC_UdFAyZyKecqOOxC8BMyuN0rKU6ISBQVjZhuU3L"/>
+                <Button x:Name="buttonRefreshNearby" Click="RefreshNearby"/>
+            </StackPanel>
+        </PivotItem>
+        <PivotItem Header="Line 1" x:Name="Line1PivotItem">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView x:Name="listLine1Direction1" 
+                              ItemClick="ListLine1Direction1_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line1Direction1Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Gare -> Hôpital"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line1ProgressRing1" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <ListView x:Name="listLine1Direction2" 
+                              ItemClick="ListLine1Direction2_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line1Direction2Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Hôpital -> Gare"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line1ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="line1Refresh" Click="getLine1"/>
+                </StackPanel>
+
+            </ScrollViewer>
+        </PivotItem>
+        <PivotItem Header="Line 2" x:Name="Line2PivotItem">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView x:Name="listLine2Direction1" 
+                              ItemClick="ListLine2Direction1_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line2Direction1Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Port à Carreaux -> Gare -> C.C.Jaux Venette"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line2ProgressRing1" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <ListView x:Name="listLine2Direction2" 
+                              ItemClick="ListLine2Direction2_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line2Direction2Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="C.C. Jaux Venette -> Gare -> Port à Carreaux"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line2ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="line2Refresh" Click="getLine2"/>
+                </StackPanel>
+            </ScrollViewer>
+        </PivotItem>
+        <PivotItem Header="Line 3" x:Name="Line3PivotItem">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView x:Name="listLine3Direction1" 
+                              ItemClick="ListLine3Direction1_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line3Direction1Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Marronniers -> Gare -> Ferdinand de Lesseps -> Hôpital"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line3ProgressRing1" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <ListView x:Name="listLine3Direction2" 
+                              ItemClick="ListLine3Direction2_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line3Direction2Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Hôpital -> Ferdinand de Lesseps -> Gare -> Marronniers"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line3ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="line3Refresh" Click="getLine3"/>
+                </StackPanel>
+            </ScrollViewer>
+        </PivotItem>
+        <PivotItem Header="Line 4" x:Name="Line4PivotItem">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView x:Name="listLine4Direction1" 
+                              ItemClick="ListLine4Direction1_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line4Direction1Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Palais -> Gare -> C.C. Jaux Venette"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line4ProgressRing1" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <ListView x:Name="listLine4Direction2" 
+                              ItemClick="ListLine4Direction2_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line4Direction2Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="C.C. Jaux Venette -> Gare -> Palais"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line4ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="line4Refresh" Click="getLine4"/>
+                </StackPanel>
+            </ScrollViewer>
+        </PivotItem>
+        <PivotItem Header="Line 5" x:Name="Line5PivotItem">
+            <ScrollViewer>
+                <StackPanel>
+                    <ListView x:Name="listLine5Direction1" 
+                              ItemClick="ListLine5Direction1_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line5Direction1Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Gare -> Hôpital"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line5ProgressRing1" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <ListView x:Name="listLine5Direction2" 
+                              ItemClick="ListLine5Direction2_ItemClick"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind Line5Direction2Items}">
+                        <ListView.Header>
+                            <ListViewHeaderItem Content="Hôpital -> Gare"/>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding StopName}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="line5ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="line5Refresh" Click="getLine5"/>
+                </StackPanel>
+            </ScrollViewer>
+        </PivotItem>
+        
+    </Pivot>
+</Page>
