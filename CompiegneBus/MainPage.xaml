@@ -11,11 +11,38 @@
 
     <Pivot Title="Compiègne Bus" x:Name="mainPivot">
         <PivotItem Header="附近" x:Name="NearbyPivotItem">
-            <StackPanel>
-                <Maps:MapControl x:Name="map" ZoomLevel="12" Height="500"
-                    MapServiceToken="7fOwlZy2ETLvuutjmYzd~rSfMsiBGFRheGaRl1uA4_A~AkcOenH2EysfdxDtHWdaEFoSC_UdFAyZyKecqOOxC8BMyuN0rKU6ISBQVjZhuU3L"/>
-                <Button x:Name="buttonRefreshNearby" Click="RefreshNearby"/>
-            </StackPanel>
+            <ScrollViewer>
+                <StackPanel>
+                    <Maps:MapControl x:Name="map" ZoomLevel="12" Height="500"
+                        MapServiceToken="7fOwlZy2ETLvuutjmYzd~rSfMsiBGFRheGaRl1uA4_A~AkcOenH2EysfdxDtHWdaEFoSC_UdFAyZyKecqOOxC8BMyuN0rKU6ISBQVjZhuU3L"/>
+                    <ListView x:Name="nearbyLine" 
+                              SelectionMode="None"
+                              IsItemClickEnabled="True"
+                              ItemsSource="{x:Bind NearbyLines}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding StopName}"/>
+                                    <ListView SelectionMode="None"
+                                              ItemsSource="{Binding LineDirection}"
+                                              IsItemClickEnabled="False">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontSize="11" Text="{Binding Line}"/>
+                                                    <TextBlock FontSize="11" Text="{Binding DirectionName}"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ProgressRing x:Name="nearbyRing" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+                    <Button x:Name="buttonRefreshNearby" Click="RefreshNearby"/>
+                </StackPanel>
+            </ScrollViewer>
         </PivotItem>
         <PivotItem Header="Line 1" x:Name="Line1PivotItem">
             <ScrollViewer>

@@ -146,6 +146,8 @@ namespace CompiegneBus
             return stopList;
         }
 
+        private bool isNearbyLoading = false;
+        public ObservableCollection<BusStopLineDirection> NearbyLines{ get; set; } = new ObservableCollection<BusStopLineDirection>();
         async private Task GetNearbyBusStop()
         {
             var access = await Geolocator.RequestAccessAsync();
@@ -155,6 +157,9 @@ namespace CompiegneBus
                     // Geoposition not opened          
                     return;
                 case GeolocationAccessStatus.Allowed:
+                    isNearbyLoading = true;
+                    nearbyRing.Visibility = Visibility.Visible;
+
                     // All is well
                     var gt = new Geolocator();
                     var position = await gt.GetGeopositionAsync();
@@ -203,6 +208,9 @@ namespace CompiegneBus
 
                         var BusStopMarkers = new List<MapElement>();   // Create a list
 
+                        // Clear Nearby Lines
+                        NearbyLines.Clear();
+
                         for (uint i = 0; i < data.Count; i++)
                         {
                             // Parse stop
@@ -220,7 +228,36 @@ namespace CompiegneBus
                                 latitude = double.Parse(positionObject["lat"].GetString());
 
                             // Create bus stop - line list
+                            BusStopLineDirection busStopLineDirection = new BusStopLineDirection();
+                            busStopLineDirection.StopName = stopName;
+                            JsonArray busStopLineDirectionList = stopObject["lines"].GetArray();
+                            if (busStopLineDirectionList != null)
+                            {
+                                for (int j = 0; j < busStopLineDirectionList.Count; j++)
+                                {
+                                    JsonObject busStopLineDirectionObject = 
+                                        busStopLineDirectionList[j].GetObject();
+                                    if (busStopLineDirectionObject != null)
+                                    {
+                                        string line = busStopLineDirectionObject["line"].GetString();
+                                        string direction = busStopLineDirectionObject["direction"].GetString();
 
+                                        if (line == null || direction == null)
+                                        {
+                                            continue;
+                                        }
+
+                                        string directionName = Line.NAME[(int.Parse(line) - 1) * 2 + (int.Parse(direction) - 1)];
+
+                                        busStopLineDirection.LineDirection.Add(new BusLineDirection() { Line = line, DirectionName = directionName });
+                                    }
+                                }
+
+                                if (busStopLineDirection.LineDirection.Count > 0)
+                                {
+                                    NearbyLines.Add(busStopLineDirection);
+                                }
+                            }
 
                             // Create and add bus stop marker
                             BasicGeoposition stopPosition = new BasicGeoposition
@@ -247,6 +284,9 @@ namespace CompiegneBus
                     {
                         // Refresh error
                     }
+
+                    isNearbyLoading = false;
+                    nearbyRing.Visibility = Visibility.Collapsed;
 
                     break;
                 case GeolocationAccessStatus.Denied:            
