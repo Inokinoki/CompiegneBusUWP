@@ -13,6 +13,8 @@ namespace CompiegneBus
         public ObservableCollection<BusLineDirection> LineDirection { get; set; } = 
             new ObservableCollection<BusLineDirection>();
         public string StopName { get; set; }
+
+        public BusStopAll BusStopInfo { get; set; }
     }
 
     public class BusLineDirection

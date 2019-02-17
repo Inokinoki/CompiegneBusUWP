@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="985e15d5-05a7-41ef-9712-e4688af306c3" Publisher="CN=veyxs" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="985e15d5-05a7-41ef-9712-e4688af306c3" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="20274VeyxShaw.CompiegneBus" Publisher="CN=AEED57E0-7E67-473D-AF8C-1A422F57D0CE" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="5231e52d-3312-4f5d-b441-1eb97f254de5" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>CompiegneBus</DisplayName>
-    <PublisherDisplayName>veyxs</PublisherDisplayName>
+    <DisplayName>Compiegne Bus</DisplayName>
+    <PublisherDisplayName>Veyx Shaw</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="CompiegneBus.App">
-      <uap:VisualElements DisplayName="CompiegneBus" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="CompiegneBus" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Compiegne Bus" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="CompiegneBus" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

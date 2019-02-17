@@ -1,0 +1,38 @@
+﻿<Page
+    x:Class="CompiegneBus.StopDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompiegneBus"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Click="Button_Click" Style="{StaticResource NavigationBackButtonNormalStyle}"/>
+                <TextBlock x:Name="title" Text="Bus Stop Name" Padding="0" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Maps:MapControl x:Name="map" ZoomLevel="12" Height="500"
+                MapServiceToken="7fOwlZy2ETLvuutjmYzd~rSfMsiBGFRheGaRl1uA4_A~AkcOenH2EysfdxDtHWdaEFoSC_UdFAyZyKecqOOxC8BMyuN0rKU6ISBQVjZhuU3L" FontFamily="Segoe UI"/>
+            <ListView x:Name="lineListView" 
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      ItemClick="LineListView_ItemClick"
+                      ItemsSource="{x:Bind StopLine}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="11" Text="{Binding Line}"/>
+                            <TextBlock FontSize="11" Text="{Binding DirectionName}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ProgressRing x:Name="lineRing" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
+            <Button x:Name="lineRefresh" Click="RefreshLines"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

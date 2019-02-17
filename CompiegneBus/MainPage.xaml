@@ -18,6 +18,7 @@
                     <ListView x:Name="nearbyLine" 
                               SelectionMode="None"
                               IsItemClickEnabled="True"
+                              ItemClick="NearbyBusStop_ItemClick"
                               ItemsSource="{x:Bind NearbyLines}">
                         <ListView.ItemTemplate>
                             <DataTemplate>

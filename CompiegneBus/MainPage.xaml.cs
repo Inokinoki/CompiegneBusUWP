@@ -29,7 +29,7 @@ namespace CompiegneBus
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private bool isMapElementsLayersAPIPresent;
+        public static bool isMapElementsLayersAPIPresent = false;
 
         public MainPage()
         {
@@ -255,6 +255,19 @@ namespace CompiegneBus
 
                                 if (busStopLineDirection.LineDirection.Count > 0)
                                 {
+                                    string stopId = stopObject["id"].GetString();
+
+                                    if (stopId != null)
+                                    {
+                                        busStopLineDirection.BusStopInfo = new BusStopAll()
+                                        {
+                                            BusStopName = stopName,
+                                            Lat = latitude,
+                                            Lon = longitude,
+                                            BusStopId = int.Parse(stopId)
+                                        };
+                                    }
+                                    
                                     NearbyLines.Add(busStopLineDirection);
                                 }
                             }
@@ -297,6 +310,24 @@ namespace CompiegneBus
                     break;
             }
             
+        }
+
+        private void NearbyBusStop_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            BusStopLineDirection clickedMenuItem = (BusStopLineDirection)e.ClickedItem;
+
+            if (clickedMenuItem != null)
+            {
+                BusStopAll stopInfo = clickedMenuItem.BusStopInfo;
+
+                if (stopInfo != null)
+                {
+                    Debug.WriteLine(stopInfo.BusStopName);
+
+                    Frame root = Window.Current.Content as Frame;
+                    root.Navigate(typeof(StopDetail), stopInfo);
+                }
+            }
         }
 
         async private void RefreshNearby(object sender, RoutedEventArgs e)
