@@ -78,7 +78,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line1ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line1Refresh" Content="Refresh" Click="getLine1" HorizontalAlignment="Stretch"/>
+                    <Button x:Name="line1Refresh" Content="Refresh" Click="getLine1" HorizontalAlignment="Stretch" FontFamily="Segoe UI"/>
                 </StackPanel>
 
             </ScrollViewer>

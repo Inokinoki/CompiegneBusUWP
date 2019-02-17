@@ -169,7 +169,7 @@ namespace CompiegneBus
 
                     if (isMapElementsLayersAPIPresent)
                     {
-                        map.Center = new Geopoint(snPosition);
+                        map.Center = position.Coordinate.Point;
                         map.ZoomLevel = 17;
                     }
 
@@ -183,8 +183,8 @@ namespace CompiegneBus
 
 
                     List<KeyValuePair<string, string>> formData = new List<KeyValuePair<string, string>>();
-                    formData.Add(new KeyValuePair<string, string>("lat", snPosition.Latitude + ""));
-                    formData.Add(new KeyValuePair<string, string>("lon", snPosition.Longitude + ""));
+                    formData.Add(new KeyValuePair<string, string>("lat", position.Coordinate.Point.Position.Latitude + ""));
+                    formData.Add(new KeyValuePair<string, string>("lon", position.Coordinate.Point.Position.Longitude + ""));
                     formData.Add(new KeyValuePair<string, string>("level", "2"));
                     HttpFormUrlEncodedContent content = new HttpFormUrlEncodedContent(formData);
 
