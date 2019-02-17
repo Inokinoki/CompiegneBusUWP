@@ -102,7 +102,7 @@ namespace CompiegneBus
             //Add a user-agent header to the GET request. 
             var headers = httpClient.DefaultRequestHeaders;
 
-            Uri requestUri = new Uri("https://jp.inoki.cc/wechat/api/get_bus_stop.php");
+            Uri requestUri = new Uri("http://66.42.32.248/wechat/api/get_bus_stop.php");
 
 
             List<KeyValuePair<string, string>> formData = new List<KeyValuePair<string, string>>();
@@ -179,7 +179,7 @@ namespace CompiegneBus
                     //Add a user-agent header to the GET request. 
                     var headers = httpClient.DefaultRequestHeaders;
 
-                    Uri requestUri = new Uri("https://jp.inoki.cc/wechat/api/stop_nearby.php");
+                    Uri requestUri = new Uri("http://66.42.32.248/wechat/api/stop_nearby.php");
 
 
                     List<KeyValuePair<string, string>> formData = new List<KeyValuePair<string, string>>();
