@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Pivot Title="Compiègne Bus" x:Name="mainPivot">
-        <PivotItem Header="附近" x:Name="NearbyPivotItem">
+        <PivotItem Header="Nearby" x:Name="NearbyPivotItem">
             <ScrollViewer>
                 <StackPanel>
                     <Maps:MapControl x:Name="map" ZoomLevel="12" Height="500"
@@ -41,7 +41,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="nearbyRing" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="buttonRefreshNearby" Click="RefreshNearby"/>
+                    <Button x:Name="buttonRefreshNearby" Click="RefreshNearby" Content="Refresh Nearby" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
@@ -78,7 +78,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line1ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line1Refresh" Click="getLine1"/>
+                    <Button x:Name="line1Refresh" Content="Refresh" Click="getLine1" HorizontalAlignment="Stretch"/>
                 </StackPanel>
 
             </ScrollViewer>
@@ -116,7 +116,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line2ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line2Refresh" Click="getLine2"/>
+                    <Button x:Name="line2Refresh" Content="Refresh" Click="getLine2" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
@@ -153,7 +153,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line3ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line3Refresh" Click="getLine3"/>
+                    <Button x:Name="line3Refresh" Content="Refresh" Click="getLine3" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
@@ -190,7 +190,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line4ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line4Refresh" Click="getLine4"/>
+                    <Button x:Name="line4Refresh" Content="Refresh" Click="getLine4" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
@@ -227,7 +227,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ProgressRing x:Name="line5ProgressRing2" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-                    <Button x:Name="line5Refresh" Click="getLine5"/>
+                    <Button x:Name="line5Refresh" Content="Refresh" Click="getLine5" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>

@@ -32,7 +32,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <ProgressRing x:Name="lineRing" Width="50" Height="50" HorizontalAlignment="Center" IsActive="True" />
-            <Button x:Name="lineRefresh" Click="RefreshLines"/>
+            <Button x:Name="lineRefresh" Click="RefreshLines" Content="Refresh" HorizontalAlignment="Stretch"/>
         </StackPanel>
     </ScrollViewer>
 </Page>
